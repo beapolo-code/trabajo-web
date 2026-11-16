@@ -1,20 +1,23 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { RegisterAuthDto } from './dto/register-auth.dto';
-import { LoginAuthDto } from './dto/login-auth.dto'; // 👈 Corregido a 'L' mayúscula
+import { LoginAuthDto } from './dto/login-auth.dto';
 import { AuthService } from './auth.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
-    constructor(private authService: AuthService) {}
 
-    @Post('register')
-    registerUser(@Body() userobj: RegisterAuthDto) {
-        console.log(userobj);
-        return userobj;
-    }
+  constructor(private authService: AuthService) {}
 
-    @Post('login')
-    login(@Body() credenciales: LoginAuthDto) { // 👈 Corregido a 'L' mayúscula
-        return this.authService.login(credenciales);
-    }
+  @Post('register')
+  registerUser(@Body() userObj: RegisterAuthDto) {
+    console.log(userObj);
+    return this.authService.funRegister(userObj);
+  }
+
+  @Post('login')
+  login(@Body() credenciales: LoginAuthDto) {
+    return this.authService.login(credenciales);
+  }
 }
