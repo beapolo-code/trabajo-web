@@ -1,0 +1,22 @@
+### 1. Registrar usuario
+POST http://127.0.0.1:3000/auth/register
+Content-Type: application/json
+
+{
+    "name": "prueba",
+    "email": "bea.polo@yavirac.edu.ec",
+    "password": "123456"
+}
+
+### 2. Login con el mismo usuario registrado
+POST http://127.0.0.1:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "bea.polo@yavirac.edu.ec",
+    "password": "123456"
+}
+
+### 3. Obtener usuarios (pega aquí el nuevo token que te devuelva el paso 2)
+GET http://127.0.0.1:3000/users
+Authorization: Bearer PEGA_AQUI_TU_NUEVO_TOKEN
